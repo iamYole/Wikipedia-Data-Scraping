@@ -1,4 +1,4 @@
-Rank,Institution,Location,Continent,Founded,Affiliation,Distance/In-Person[a],Enrollment,Link
+Rank,Institution,Location,Continent,Founded,Affiliation,Delivery_Method,Enrollment,Link
 1,Indira Gandhi National Open University,"New Delhi, India",Asia,1985,Public,Distance/In-Person,"7,140,000+",https://en.wikipedia.org/wiki/Indira_Gandhi_National_Open_University
 2,"National University, Bangladesh","Gazipur, Bangladesh",Asia,1992,Public,In-Person,"3,425,832","https://en.wikipedia.org/wiki/National_University,_Bangladesh"
 3,Anadolu University,"Eskişehir, Turkey",Asia,1958,Public,Distance/In-Person,"1,974,343",https://en.wikipedia.org/wiki/Anadolu_University

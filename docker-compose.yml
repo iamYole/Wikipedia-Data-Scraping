@@ -1,0 +1,26 @@
+services:
+  postgres_db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: P@ssw0rd.1
+      POSTGRES_DB: amdari_db
+      POSTGRES_USER: admin
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+  # mysql:
+  #   image: mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: P@ssw0rd.1
+  #     MYSQL_PASSWORD: P@ssw0rd.1
+  #     MYSQL_DATABASE: amdari_db
+  #     MYSQL_USER: admin
+  #   volumes:
+  #     - db-data:/var/lib/mysql
+  #   ports:
+  #     - 3306:3306
+
+
+volumes:
+  db-data: {}
