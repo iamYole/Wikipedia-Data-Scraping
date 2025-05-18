@@ -20,21 +20,30 @@ CREATE TABLE universities(
 CREATE TABLE dimUniversities(
     university_id SERIAL PRIMARY KEY,
     university_name VARCHAR(255) NOT NULL,
-    delivery_method VARCHAR(255) NOT NULL,
+
     founded INT NOT NULL,
-    affiliation VARCHAR(50) NOT NULL,
     university_link VARCHAR(300) NOT NULL,
 
     UNIQUE (university_name)
 );
 
-CREATE TABLE dimLocation(
+CREATE TABLE dimLocations(
     location_id SERIAL PRIMARY KEY,
     location_city VARCHAR(50) NOT NULL,
     location_country VARCHAR(50) NOT NULL,
     continent VARCHAR(50) NOT NULL,
     
     UNIQUE (location_city,location_country,continent)
+);
+
+CREATE TABLE dimAffilations(
+    affiliation_id SERIAL PRIMARY KEY,
+    affiliation VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE dimDeliveryMethods(
+    delivery_method_id SERIAL PRIMARY KEY,
+    delivery_method VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE factRankings(
@@ -44,9 +53,13 @@ CREATE TABLE factRankings(
       university_id INT NOT NULL,
       location_id INT NOT NULL,
       updated_year INT NOT NULL,
+      delivery_method_id INT NOT NULL,
+      affiliation_id INT NOT NULL,
     
 
     FOREIGN KEY (university_id) REFERENCES dimUniversities(university_id),
-    FOREIGN KEY (location_id) REFERENCES dimLocation(location_id)
+    FOREIGN KEY (delivery_method_id) REFERENCES dimDeliveryMethods(delivery_method_id),
+    FOREIGN KEY (affiliation_id) REFERENCES dimAffilations(affiliation_id),
+    FOREIGN KEY (location_id) REFERENCES dimLocations(location_id)
 );
 

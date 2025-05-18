@@ -1,4 +1,4 @@
-INSERT INTO dimLocation 
+INSERT INTO dimLocations 
     (location_city,location_country, continent)
 VALUES (%s, %s, %s)
 ON CONFLICT (location_city,location_country, continent)
