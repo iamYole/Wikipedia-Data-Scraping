@@ -1,4 +1,4 @@
-CREATE TABLE universities(
+CREATE TABLE IF NOT EXISTS universities(
     id SERIAL PRIMARY KEY,
     university_rank INT NOT NULL,
     university_name VARCHAR(255) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE universities(
     UNIQUE (location_country, university_name, updated_year)
 );
 
-CREATE TABLE dimUniversities(
+CREATE TABLE IF NOT EXISTS dimUniversities(
     university_id SERIAL PRIMARY KEY,
     university_name VARCHAR(255) NOT NULL,
 
@@ -27,7 +27,7 @@ CREATE TABLE dimUniversities(
     UNIQUE (university_name)
 );
 
-CREATE TABLE dimLocations(
+CREATE TABLE IF NOT EXISTS dimLocations(
     location_id SERIAL PRIMARY KEY,
     location_city VARCHAR(50) NOT NULL,
     location_country VARCHAR(50) NOT NULL,
@@ -36,17 +36,17 @@ CREATE TABLE dimLocations(
     UNIQUE (location_city,location_country,continent)
 );
 
-CREATE TABLE dimAffilations(
+CREATE TABLE IF NOT EXISTS dimAffilations(
     affiliation_id SERIAL PRIMARY KEY,
     affiliation VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE dimDeliveryMethods(
+CREATE TABLE IF NOT EXISTS dimDeliveryMethods(
     delivery_method_id SERIAL PRIMARY KEY,
     delivery_method VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE factRankings(
+CREATE TABLE  IF NOT EXISTS factRankings(
       id SERIAL PRIMARY KEY,
       university_rank INT NOT NULL,
       enrollment BIGINT NOT NULL,
