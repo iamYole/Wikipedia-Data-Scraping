@@ -111,8 +111,6 @@ def connect_to_postgres():
     return conn
     
     
-
-
 def loading_data_to_database(file_path):
     df = pd.read_csv(file_path, index_col=0)
     conn = connect_to_postgres()

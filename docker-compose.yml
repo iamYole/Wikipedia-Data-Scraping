@@ -2,25 +2,33 @@ services:
   postgres_db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: P@ssw0rd.1
+      POSTGRES_PASSWORD: amdari_db_password
       POSTGRES_DB: amdari_db
       POSTGRES_USER: admin
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
       - 5433:5432
-  # mysql:
-  #   image: mysql
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: P@ssw0rd.1
-  #     MYSQL_PASSWORD: P@ssw0rd.1
-  #     MYSQL_DATABASE: amdari_db
-  #     MYSQL_USER: admin
-  #   volumes:
-  #     - db-data:/var/lib/mysql
-  #   ports:
-  #     - 3306:3306
 
+  superset:
+    build: .
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=1234567890
+      - SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://admin:amdari_db_password@postgres_db:5432/amdari_db
+    depends_on:
+      - postgres_db
+    volumes:
+      - superset_home:/app/superset_home
+    command: >
+      /bin/bash -c "
+        superset db upgrade &&
+        superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@example.com --password admin &&
+        superset init &&
+        superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
+      "
 
 volumes:
   db-data: {}
+  superset_home: {}
